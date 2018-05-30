@@ -31,7 +31,7 @@ public class nuevoUsuario extends AppCompatActivity {
                 } else {
                     String nombre = mEditNombreView.getText().toString();
                     String cedula = mEditCedulaView.getText().toString();
-                    replyIntent.putExtra(EXTRA_REPLY, nombre)
+                    replyIntent.putExtra(EXTRA_REPLY, nombre);
                     replyIntent.putExtra(EXTRA_REPLY, cedula);
                     setResult(RESULT_OK, replyIntent);
                 }
