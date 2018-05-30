@@ -19,16 +19,13 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button btnUsuarios = (Button) findViewById(R.id.btn_usuarios);
+        final Button btnUsuarios = findViewById(R.id.btn_usuarios);
         btnUsuarios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), Usuarios.class);
                 startActivity(intent);
             }
         });
-
-
-
     }
 
     //Check External
