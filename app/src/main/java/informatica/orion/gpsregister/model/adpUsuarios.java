@@ -12,21 +12,12 @@ import java.util.List;
 import informatica.orion.gpsregister.R;
 import informatica.orion.gpsregister.entity.entUsuarios;
 
-public class ladUsuarios extends RecyclerView.Adapter<ladUsuarios.UsuariosViewHolder> {
-
-class UsuariosViewHolder extends RecyclerView.ViewHolder {
-    private final TextView usuariosItemView;
-
-    private UsuariosViewHolder(View itemView) {
-        super(itemView);
-        usuariosItemView = itemView.findViewById(R.id.textView);
-    }
-}
+public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHolder> {
 
     private final LayoutInflater mInflater;
     private List<entUsuarios> mUsuarios; // Cached copy of entUsuarios
 
-    public ladUsuarios(Context context) { mInflater = LayoutInflater.from(context); }
+    public adpUsuarios(Context context) { mInflater = LayoutInflater.from(context); }
 
     @Override
     public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -57,5 +48,14 @@ class UsuariosViewHolder extends RecyclerView.ViewHolder {
         if (mUsuarios != null)
             return mUsuarios.size();
         else return 0;
+    }
+
+    class UsuariosViewHolder extends RecyclerView.ViewHolder {
+        private final TextView usuariosItemView;
+
+        private UsuariosViewHolder(View itemView) {
+            super(itemView);
+            usuariosItemView = itemView.findViewById(R.id.textView);
+        }
     }
 }

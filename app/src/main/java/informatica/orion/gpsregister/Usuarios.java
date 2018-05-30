@@ -16,7 +16,7 @@ import android.widget.Toast;
 import java.util.List;
 
 import informatica.orion.gpsregister.entity.entUsuarios;
-import informatica.orion.gpsregister.model.ladUsuarios;
+import informatica.orion.gpsregister.model.adpUsuarios;
 import informatica.orion.gpsregister.model.vmGPSRegister;
 
 public class Usuarios extends AppCompatActivity {
@@ -24,6 +24,9 @@ public class Usuarios extends AppCompatActivity {
     private vmGPSRegister mVmGPSRegister;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
+
+    RecyclerView recyclerView;
+    RecyclerView.Adapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,10 +36,12 @@ public class Usuarios extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        RecyclerView recyclerView = findViewById(R.id.recyclerview);
-        final ladUsuarios adapter = new ladUsuarios(this);
-        recyclerView.setAdapter(adapter);
+        recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
+
+        adapter = new adpUsuarios();
+
+        recyclerView.setAdapter(adapter);
 
         mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
 
