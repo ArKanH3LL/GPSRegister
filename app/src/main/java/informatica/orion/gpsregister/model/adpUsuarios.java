@@ -1,61 +1,53 @@
 package informatica.orion.gpsregister.model;
 
-import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import informatica.orion.gpsregister.R;
-import informatica.orion.gpsregister.entity.entUsuarios;
 
 public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHolder> {
 
-    private final LayoutInflater mInflater;
-    private List<entUsuarios> mUsuarios; // Cached copy of entUsuarios
+    ArrayList<String> users;
 
-    public adpUsuarios(Context context) { mInflater = LayoutInflater.from(context); }
+    public adpUsuarios(ArrayList<String> users) {
+        this.users = users;
+    }
 
     @Override
     public UsuariosViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View itemView = mInflater.inflate(R.layout.reciclerview_item, parent, false);
+        View itemView = LayoutInflater.from(parent.getContext()).inflate(R.layout.reciclerview_item, parent, false);
         return new UsuariosViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
-        if (mUsuarios != null) {
-            entUsuarios current = mUsuarios.get(position);
-            holder.usuariosItemView.setText(current.getNombre());
+        if (users != null) {
+            holder.nombreItemView.setText(users.get(position));
+
         } else {
             // Covers the case of data not being ready yet.
-            holder.usuariosItemView.setText("No Word");
+            holder.nombreItemView.setText("Sin Nombres");
         }
     }
 
-    public void setUsuarios(List<entUsuarios> entUsuarios){
-        mUsuarios = entUsuarios;
-        notifyDataSetChanged();
-    }
-
-    // getItemCount() is called many times, and when it is first called,
-    // mWords has not been updated (means initially, it's null, and we can't return null).
     @Override
     public int getItemCount() {
-        if (mUsuarios != null)
-            return mUsuarios.size();
+        if (users != null)
+            return users.size();
         else return 0;
     }
 
-    class UsuariosViewHolder extends RecyclerView.ViewHolder {
-        private final TextView usuariosItemView;
+    public class UsuariosViewHolder extends RecyclerView.ViewHolder {
+        public TextView nombreItemView;
 
         private UsuariosViewHolder(View itemView) {
             super(itemView);
-            usuariosItemView = itemView.findViewById(R.id.textView);
+            nombreItemView = itemView.findViewById(R.id.nombreTV);
         }
     }
 }

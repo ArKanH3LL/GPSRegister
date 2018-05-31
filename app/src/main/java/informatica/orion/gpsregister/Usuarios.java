@@ -13,6 +13,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import informatica.orion.gpsregister.entity.entUsuarios;
@@ -27,6 +28,7 @@ public class Usuarios extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
+    ArrayList<String> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,9 @@ public class Usuarios extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        adapter = new adpUsuarios();
+        users = new ArrayList<>();
+
+        adapter = new adpUsuarios(users);
 
         recyclerView.setAdapter(adapter);
 
