@@ -39,46 +39,44 @@ public class Usuarios extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerview);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         users = new ArrayList<>();
 
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new adpUsuarios(users);
-
         recyclerView.setAdapter(adapter);
 
-        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
-
-        mVmGPSRegister.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
-            @Override
-            public void onChanged(@Nullable final List<entUsuarios> entUsuarios) {
-                // Update the cached copy of the words in the adapter.
-                adapter.setUsuarios(entUsuarios);
-            }
-        });
+//        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
+//
+//        mVmGPSRegister.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
+//            @Override
+//            public void onChanged(@Nullable final List<entUsuarios> entUsuarios) {
+//                // Update the cached copy of the words in the adapter.
+//                adapter.setUsuarios(entUsuarios);
+//            }
+//        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Usuarios.this, nuevoUsuario.class);
-                startActivityForResult(intent, NEW_WORD_ACTIVITY_REQUEST_CODE);;
+                startActivity(intent);
             }
         });
     }
 
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            entUsuarios entUsuarios = new entUsuarios(data.getStringExtra(nuevoUsuario.EXTRA_REPLY));
-            mVmGPSRegister.insert(entUsuarios);
-        } else {
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
-        }
-    }
+//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+//        super.onActivityResult(requestCode, resultCode, data);
+//
+//        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+//            entUsuarios entUsuarios = new entUsuarios(data.getStringExtra(nuevoUsuario.EXTRA_REPLY));
+//            mVmGPSRegister.insert(entUsuarios);
+//        } else {
+//            Toast.makeText(
+//                    getApplicationContext(),
+//                    R.string.empty_not_saved,
+//                    Toast.LENGTH_LONG).show();
+//        }
+//    }
 
 }
