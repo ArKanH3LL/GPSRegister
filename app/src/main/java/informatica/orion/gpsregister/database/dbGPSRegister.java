@@ -19,7 +19,7 @@ public abstract class dbGPSRegister extends RoomDatabase {
 
     private static dbGPSRegister INSTANCE;
 
-    static dbGPSRegister getDatabase(final Context context) {
+    public static dbGPSRegister getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (dbGPSRegister.class) {
                 if (INSTANCE == null) {

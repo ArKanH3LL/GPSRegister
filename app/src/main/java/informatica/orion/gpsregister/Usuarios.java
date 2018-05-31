@@ -41,6 +41,10 @@ public class Usuarios extends AppCompatActivity {
         recyclerView = findViewById(R.id.recyclerview);
         users = new ArrayList<>();
 
+        for (int i = 0; i < 10; i++) {
+            users.add("Persona # "+i);
+        }
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         adapter = new adpUsuarios(users);
         recyclerView.setAdapter(adapter);
