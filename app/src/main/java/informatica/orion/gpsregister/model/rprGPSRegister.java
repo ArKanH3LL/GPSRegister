@@ -17,10 +17,10 @@ import informatica.orion.gpsregister.database.dbGPSRegister;
 public class rprGPSRegister {
 
     private daoUsuarios mUsuariosDAO;
-    private LiveData<ArrayList<entUsuarios>> mAllUsuarios;
+    private LiveData<List<entUsuarios>> mAllUsuarios;
 
     private daoWaypoints mWaypointsDAO;
-    private LiveData<ArrayList<entWaypoints>> mAllWaypoints;
+    private LiveData<List<entWaypoints>> mAllWaypoints;
 
 
     rprGPSRegister(Application application) {
@@ -33,14 +33,14 @@ public class rprGPSRegister {
         mAllWaypoints = mWaypointsDAO.getAllWaypoints();
     }
 
-    LiveData<ArrayList<entUsuarios>> getAllUsuarios() {
+    LiveData<List<entUsuarios>> getAllUsuarios() {
         return mAllUsuarios;
     }
     public void insert (entUsuarios usuarios) {
         new insertAsyncTask(mUsuariosDAO).execute(usuarios);
     }
 
-    LiveData<ArrayList<entWaypoints>> getmAllWaypoints() {
+    LiveData<List<entWaypoints>> getmAllWaypoints() {
         return mAllWaypoints;
     }
     public void insert (entWaypoints waypoints) {

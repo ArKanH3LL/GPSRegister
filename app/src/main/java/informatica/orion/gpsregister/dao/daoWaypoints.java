@@ -15,13 +15,13 @@ import informatica.orion.gpsregister.entity.entWaypoints;
 @Dao
 public interface daoWaypoints {
     @Query("SELECT * FROM entWaypoints")
-    LiveData<ArrayList<entWaypoints>> getAllWaypoints();
+    LiveData<List<entWaypoints>> getAllWaypoints();
 
     @Query("SELECT * FROM entWaypoints WHERE idwp IN (:wpid)")
-    ArrayList<entWaypoints> getAllWaypointsById(int[] wpid);
+    List<entWaypoints> getAllWaypointsById(int[] wpid);
 
     @Query("SELECT * FROM entWaypoints WHERE nis LIKE :nis")
-    ArrayList<entWaypoints> findWaypointByNis(String nis);
+    List<entWaypoints> findWaypointByNis(String nis);
 
     @Insert
     void insert(entWaypoints... waypoints);

@@ -30,7 +30,6 @@ public class Usuarios extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     RecyclerView recyclerView;
-    final adpUsuarios adapter = new adpUsuarios(this);
     ArrayList<entUsuarios> users;
 
     @Override
@@ -40,6 +39,8 @@ public class Usuarios extends AppCompatActivity {
         setContentView(R.layout.activity_usuarios);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        final adpUsuarios adapter = new adpUsuarios(this);
 
         recyclerView = findViewById(R.id.recyclerview);
 

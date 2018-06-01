@@ -1,6 +1,7 @@
 package informatica.orion.gpsregister.dao;
 
 import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.MutableLiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -16,13 +17,13 @@ import informatica.orion.gpsregister.entity.entUsuarios;
 @Dao
 public interface daoUsuarios {
     @Query("SELECT * FROM entUsuarios")
-    LiveData<ArrayList<entUsuarios>> getAllUsuarios();
+    LiveData<List<entUsuarios>> getAllUsuarios();
 
     @Query("SELECT * FROM entUsuarios WHERE uid IN (:userId)")
-    ArrayList<entUsuarios> getAllById(int[] userId);
+    List<entUsuarios> getAllById(int[] userId);
 
     @Query("SELECT * FROM entUsuarios WHERE cedula LIKE :cedula")
-    ArrayList<entUsuarios> findByCedula(String cedula);
+    List<entUsuarios> findByCedula(String cedula);
 
     @Insert
     void insert(entUsuarios... usuarios);
