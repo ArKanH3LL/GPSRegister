@@ -28,7 +28,7 @@ public class Usuarios extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.Adapter adapter;
-    ArrayList<String> users;
+    ArrayList<entUsuarios> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,8 @@ public class Usuarios extends AppCompatActivity {
         users = new ArrayList<>();
 
         for (int i = 0; i < 10; i++) {
-            users.add("Persona # "+i);
+            entUsuarios user = new entUsuarios("2034683","Felix Godoy");
+            users.add(user);
         }
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

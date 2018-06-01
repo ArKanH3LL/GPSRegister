@@ -9,12 +9,13 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import informatica.orion.gpsregister.R;
+import informatica.orion.gpsregister.entity.entUsuarios;
 
 public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHolder> {
 
-    ArrayList<String> users;
+    ArrayList<entUsuarios> users;
 
-    public adpUsuarios(ArrayList<String> users) {
+    public adpUsuarios(ArrayList<entUsuarios> users) {
         this.users = users;
     }
 
@@ -27,11 +28,12 @@ public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHo
     @Override
     public void onBindViewHolder(UsuariosViewHolder holder, int position) {
         if (users != null) {
-            holder.nombreItemView.setText(users.get(position));
+            holder.nombreItemView.setText(users.get(position).getNombre());
+            holder.cedulaItemView.setText(users.get(position).getCedula());
 
         } else {
             // Covers the case of data not being ready yet.
-            holder.nombreItemView.setText("Sin Nombres");
+            holder.nombreItemView.setText("No hay Usuarios Registrados");
         }
     }
 
@@ -44,10 +46,12 @@ public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHo
 
     public class UsuariosViewHolder extends RecyclerView.ViewHolder {
         public TextView nombreItemView;
+        public TextView cedulaItemView;
 
         private UsuariosViewHolder(View itemView) {
             super(itemView);
-            nombreItemView = itemView.findViewById(R.id.nombreTV);
+            nombreItemView = itemView.findViewById(R.id.txt_nombre);
+            cedulaItemView = itemView.findViewById(R.id.txt_cedula);
         }
     }
 }
