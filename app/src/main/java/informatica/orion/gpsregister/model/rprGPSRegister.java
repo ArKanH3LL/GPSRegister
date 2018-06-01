@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.LiveData;
 import android.os.AsyncTask;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import informatica.orion.gpsregister.dao.daoUsuarios;
@@ -12,36 +13,38 @@ import informatica.orion.gpsregister.entity.entUsuarios;
 import informatica.orion.gpsregister.entity.entWaypoints;
 import informatica.orion.gpsregister.database.dbGPSRegister;
 
+
 public class rprGPSRegister {
 
     private daoUsuarios mUsuariosDAO;
-    private LiveData<List<entUsuarios>> mAllUsuarios;
+    private LiveData<ArrayList<entUsuarios>> mAllUsuarios;
 
     private daoWaypoints mWaypointsDAO;
-    private LiveData<List<entWaypoints>> mAllWaypoints;
+    private LiveData<ArrayList<entWaypoints>> mAllWaypoints;
 
 
     rprGPSRegister(Application application) {
         dbGPSRegister db = dbGPSRegister.getDatabase(application);
 
         mUsuariosDAO = db.UsuariosDao();
-        mAllUsuarios = mUsuariosDAO.getAll();
+        mAllUsuarios = mUsuariosDAO.getAllUsuarios();
 
         mWaypointsDAO = db.WaypointsDao();
-        mAllWaypoints = mWaypointsDAO.getAll();
+        mAllWaypoints = mWaypointsDAO.getAllWaypoints();
     }
 
-    LiveData<List<entUsuarios>> getAllUsuarios() {
+    LiveData<ArrayList<entUsuarios>> getAllUsuarios() {
         return mAllUsuarios;
     }
-    public void insert (entUsuarios entUsuarios) {
-        new insertAsyncTask(mUsuariosDAO).execute(entUsuarios);
+    public void insert (entUsuarios usuarios) {
+        new insertAsyncTask(mUsuariosDAO).execute(usuarios);
     }
 
-    LiveData<List<entWaypoints>> getmAllWaypoints() {
+    LiveData<ArrayList<entWaypoints>> getmAllWaypoints() {
         return mAllWaypoints;
     }
-    public void insert (entWaypoints entWaypoints) {new insertAsyncTaskw(mWaypointsDAO).execute(entWaypoints);
+    public void insert (entWaypoints waypoints) {
+        new insertAsyncTaskw(mWaypointsDAO).execute(waypoints);
     }
 
     private static class insertAsyncTask extends AsyncTask<entUsuarios, Void, Void> {
@@ -53,22 +56,23 @@ public class rprGPSRegister {
         }
 
         @Override
-        protected Void doInBackground(final entUsuarios... params) {
-            mAsyncTaskDao.insert(params[0]);
+        protected Void doInBackground(final entUsuarios... usuarios) {
+            mAsyncTaskDao.insert(usuarios[0]);
             return null;
         }
     }
+
     private static class insertAsyncTaskw extends AsyncTask<entWaypoints, Void, Void> {
 
         private daoWaypoints mAsyncTaskDaow;
 
-        insertAsyncTaskw(daoWaypoints dao) {
-            mAsyncTaskDaow = dao;
+        insertAsyncTaskw(daoWaypoints daow) {
+            mAsyncTaskDaow = daow;
         }
 
         @Override
-        protected Void doInBackground(final entWaypoints... params) {
-            mAsyncTaskDaow.insert(params[0]);
+        protected Void doInBackground(final entWaypoints... waypoints) {
+            mAsyncTaskDaow.insert(waypoints[0]);
             return null;
         }
     }

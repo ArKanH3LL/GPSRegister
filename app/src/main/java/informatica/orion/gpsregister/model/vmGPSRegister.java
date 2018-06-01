@@ -4,6 +4,7 @@ import android.app.Application;
 import android.arch.lifecycle.AndroidViewModel;
 import android.arch.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import informatica.orion.gpsregister.entity.entUsuarios;
@@ -13,8 +14,8 @@ public class vmGPSRegister extends AndroidViewModel {
 
     private rprGPSRegister mRepository;
 
-    private LiveData<List<entUsuarios>> mAllUsuarios;
-    private LiveData<List<entWaypoints>> mAllWaypoints;
+    private LiveData<ArrayList<entUsuarios>> mAllUsuarios;
+    private LiveData<ArrayList<entWaypoints>> mAllWaypoints;
 
     public vmGPSRegister(Application application) {
         super(application);
@@ -23,9 +24,9 @@ public class vmGPSRegister extends AndroidViewModel {
         mAllWaypoints=mRepository.getmAllWaypoints();
     }
 
-    public LiveData<List<entUsuarios>> getAllUsuarios() { return mAllUsuarios; }
-    public void insert(entUsuarios entUsuarios) { mRepository.insert(entUsuarios); }
+    LiveData<ArrayList<entUsuarios>> getAllUsuarios() { return mAllUsuarios; }
+    public void insert(entUsuarios usuarios) { mRepository.insert(usuarios); }
 
-    LiveData<List<entWaypoints>> getAllWaypoints() { return mAllWaypoints; }
-    public void insert(entWaypoints entWaypoints) { mRepository.insert(entWaypoints); }
+    LiveData<ArrayList<entWaypoints>> getAllWaypoints() { return mAllWaypoints; }
+    public void insert(entWaypoints waypoints) { mRepository.insert(waypoints); }
 }

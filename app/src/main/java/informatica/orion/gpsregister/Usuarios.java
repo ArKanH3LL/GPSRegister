@@ -2,6 +2,8 @@ package informatica.orion.gpsregister;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.arch.persistence.room.Room;
+import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -16,6 +18,7 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
+import informatica.orion.gpsregister.database.dbGPSRegister;
 import informatica.orion.gpsregister.entity.entUsuarios;
 import informatica.orion.gpsregister.model.adpUsuarios;
 import informatica.orion.gpsregister.model.vmGPSRegister;
@@ -27,7 +30,7 @@ public class Usuarios extends AppCompatActivity {
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     RecyclerView recyclerView;
-    RecyclerView.Adapter adapter;
+    final adpUsuarios adapter = new adpUsuarios(this);
     ArrayList<entUsuarios> users;
 
     @Override
@@ -39,16 +42,9 @@ public class Usuarios extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         recyclerView = findViewById(R.id.recyclerview);
-        users = new ArrayList<>();
 
-        for (int i = 0; i < 10; i++) {
-            entUsuarios user = new entUsuarios("2034683","Felix Godoy");
-            users.add(user);
-        }
-
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new adpUsuarios(users);
         recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 //        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
 //

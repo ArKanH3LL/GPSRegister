@@ -7,6 +7,9 @@ import android.arch.persistence.room.PrimaryKey;
 
 @Entity(indices = {@Index("cedula")})
 public class entUsuarios {
+    public int getUid() {return uid;}
+    public void setUid(int uid) {this.uid = uid;}
+
     @PrimaryKey(autoGenerate = true)
     public int uid;
 
@@ -20,6 +23,14 @@ public class entUsuarios {
     public void setNombre(String nombre) {this.nombre = nombre;}
     public String getNombre() {return nombre;}
 
-    // Getters and setters are ignored for brevity,
-    // but they're required for Room to work.
+    @ColumnInfo(name = "area")
+    public String area;
+    public void setArea(String area) {this.area = area;}
+    public String getArea() {return area;}
+
+    @ColumnInfo(name = "empresa")
+    public String empresa;
+    public void setEmpresa(String empresa) {this.empresa = empresa;}
+    public String getEmpresa() {return empresa;}
+
 }

@@ -7,6 +7,7 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.Query;
 import android.arch.persistence.room.Update;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import informatica.orion.gpsregister.entity.entWaypoints;
@@ -14,19 +15,19 @@ import informatica.orion.gpsregister.entity.entWaypoints;
 @Dao
 public interface daoWaypoints {
     @Query("SELECT * FROM entWaypoints")
-    LiveData<List<entWaypoints>> getAll();
+    LiveData<ArrayList<entWaypoints>> getAllWaypoints();
 
     @Query("SELECT * FROM entWaypoints WHERE idwp IN (:wpid)")
-    List<entWaypoints> getAllByIds(int[] wpid);
+    ArrayList<entWaypoints> getAllWaypointsById(int[] wpid);
 
     @Query("SELECT * FROM entWaypoints WHERE nis LIKE :nis")
-    List<entWaypoints> findByNis(String nis);
+    ArrayList<entWaypoints> findWaypointByNis(String nis);
 
     @Insert
-    void insert(entWaypoints entWaypoints);
+    void insert(entWaypoints... waypoints);
 
     @Update
-    void update(entWaypoints entWaypoints);
+    void update(entWaypoints... waypoints);
 
     @Delete
     void delete(entWaypoints waypoint);
