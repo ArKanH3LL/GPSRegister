@@ -3,6 +3,8 @@
     <string name="title_activity_usuarios">Usuarios</string>
     <string name="hint_cedula">Cedula...</string>
     <string name="hint_nombre">Nombre y Apellido...</string>
+    <string name="hint_unidad">Unidad o Dependencia...</string>
+    <string name="hint_empresa">Empresa...</string>
     <string name="button_save">Guardar</string>
     <string name="empty_not_saved">No guardado porque esta vacio.</string>
 </resources>

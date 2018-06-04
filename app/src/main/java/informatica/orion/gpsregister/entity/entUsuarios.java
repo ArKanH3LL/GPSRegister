@@ -23,10 +23,10 @@ public class entUsuarios {
     public void setNombre(String nombre) {this.nombre = nombre;}
     public String getNombre() {return nombre;}
 
-    @ColumnInfo(name = "area")
-    public String area;
-    public void setArea(String area) {this.area = area;}
-    public String getArea() {return area;}
+    @ColumnInfo(name = "unidad")
+    public String unidad;
+    public void setUnidad(String unidad) {this.unidad = unidad;}
+    public String getUnidad() {return unidad;}
 
     @ColumnInfo(name = "empresa")
     public String empresa;

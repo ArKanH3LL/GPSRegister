@@ -25,12 +25,11 @@ import informatica.orion.gpsregister.model.vmGPSRegister;
 
 public class Usuarios extends AppCompatActivity {
 
-    private vmGPSRegister mVmGPSRegister;
+    vmGPSRegister mVmGPSRegister;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
     RecyclerView recyclerView;
-    ArrayList<entUsuarios> users;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,15 +46,15 @@ public class Usuarios extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-//        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
-//
-//        mVmGPSRegister.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
-//            @Override
-//            public void onChanged(@Nullable final List<entUsuarios> entUsuarios) {
-//                // Update the cached copy of the words in the adapter.
-//                adapter.setUsuarios(entUsuarios);
-//            }
-//        });
+        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
+
+        mVmGPSRegister.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
+            @Override
+            public void onChanged(@Nullable final List<entUsuarios> entUsuarios) {
+                // Update the cached copy of the words in the adapter.
+                adapter.setUsuarios(entUsuarios);
+            }
+        });
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -67,18 +66,23 @@ public class Usuarios extends AppCompatActivity {
         });
     }
 
-//    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-//        super.onActivityResult(requestCode, resultCode, data);
-//
-//        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-//            entUsuarios entUsuarios = new entUsuarios(data.getStringExtra(nuevoUsuario.EXTRA_REPLY));
-//            mVmGPSRegister.insert(entUsuarios);
-//        } else {
-//            Toast.makeText(
-//                    getApplicationContext(),
-//                    R.string.empty_not_saved,
-//                    Toast.LENGTH_LONG).show();
-//        }
-//    }
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == NEW_WORD_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
+            String[] valoresu = data.getStringArrayExtra(nuevoUsuario.EXTRA_REPLY);
+            entUsuarios usuarios = new entUsuarios();
+            usuarios.setNombre(String.valueOf(valoresu[0]));
+            usuarios.setCedula(String.valueOf(valoresu[1]));
+            usuarios.setUnidad(String.valueOf(valoresu[2]));
+            usuarios.setEmpresa(String.valueOf(valoresu[3]));
+            mVmGPSRegister.insert(usuarios);
+        } else {
+            Toast.makeText(
+                    getApplicationContext(),
+                    R.string.empty_not_saved,
+                    Toast.LENGTH_LONG).show();
+        }
+    }
 
 }

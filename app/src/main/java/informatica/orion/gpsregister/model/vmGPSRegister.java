@@ -24,7 +24,7 @@ public class vmGPSRegister extends AndroidViewModel {
         mAllWaypoints=mRepository.getmAllWaypoints();
     }
 
-    LiveData<List<entUsuarios>> getAllUsuarios() { return mAllUsuarios; }
+    public LiveData<List<entUsuarios>> getAllUsuarios() { return mAllUsuarios; }
     public void insert(entUsuarios usuarios) { mRepository.insert(usuarios); }
 
     LiveData<List<entWaypoints>> getAllWaypoints() { return mAllWaypoints; }
