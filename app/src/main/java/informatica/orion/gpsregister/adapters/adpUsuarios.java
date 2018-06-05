@@ -1,4 +1,4 @@
-package informatica.orion.gpsregister.model;
+package informatica.orion.gpsregister.adapters;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;
@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import informatica.orion.gpsregister.R;
@@ -32,7 +31,7 @@ public class adpUsuarios extends RecyclerView.Adapter<adpUsuarios.UsuariosViewHo
     }
 
     private final LayoutInflater mInFlater;
-    private ArrayList<entUsuarios> users;
+    private List<entUsuarios> users;
 
     public adpUsuarios(Context context){mInFlater = LayoutInflater.from(context);}
 

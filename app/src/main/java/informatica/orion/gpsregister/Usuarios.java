@@ -2,8 +2,6 @@ package informatica.orion.gpsregister;
 
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
-import android.arch.persistence.room.Room;
-import android.arch.persistence.room.RoomDatabase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -15,17 +13,15 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import informatica.orion.gpsregister.database.dbGPSRegister;
 import informatica.orion.gpsregister.entity.entUsuarios;
-import informatica.orion.gpsregister.model.adpUsuarios;
-import informatica.orion.gpsregister.model.vmGPSRegister;
+import informatica.orion.gpsregister.adapters.adpUsuarios;
+import informatica.orion.gpsregister.model.vmUsuarios;
 
 public class Usuarios extends AppCompatActivity {
 
-    vmGPSRegister mVmGPSRegister;
+    vmUsuarios mVmUsuarios;
 
     public static final int NEW_WORD_ACTIVITY_REQUEST_CODE = 1;
 
@@ -46,9 +42,9 @@ public class Usuarios extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
-        mVmGPSRegister = ViewModelProviders.of(this).get(vmGPSRegister.class);
+        mVmUsuarios = ViewModelProviders.of(this).get(vmUsuarios.class);
 
-        mVmGPSRegister.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
+        mVmUsuarios.getAllUsuarios().observe(this, new Observer<List<entUsuarios>>() {
             @Override
             public void onChanged(@Nullable final List<entUsuarios> entUsuarios) {
                 // Update the cached copy of the words in the adapter.
@@ -76,7 +72,7 @@ public class Usuarios extends AppCompatActivity {
             usuarios.setCedula(String.valueOf(valoresu[1]));
             usuarios.setUnidad(String.valueOf(valoresu[2]));
             usuarios.setEmpresa(String.valueOf(valoresu[3]));
-            mVmGPSRegister.insert(usuarios);
+            mVmUsuarios.insert(usuarios);
         } else {
             Toast.makeText(
                     getApplicationContext(),
