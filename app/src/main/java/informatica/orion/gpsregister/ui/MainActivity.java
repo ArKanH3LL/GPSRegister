@@ -1,4 +1,4 @@
-package informatica.orion.gpsregister;
+package informatica.orion.gpsregister.ui;
 
 import android.content.Intent;
 import android.os.Environment;
@@ -9,6 +9,8 @@ import android.view.View;
 import android.widget.Button;
 
 import java.io.File;
+
+import informatica.orion.gpsregister.R;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
         final Button btnUsuarios = findViewById(R.id.btn_usuarios);
         btnUsuarios.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), Usuarios.class);
+                Intent intent = new Intent(v.getContext(), UsuariosShow.class);
                 startActivity(intent);
             }
         });

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+
+        <variable
+            name="isLoading"
+            type="boolean" />
+
+        <variable
+            name="usuarioViewModel"
+            type="informatica.orion.gpsregister.viewmodel.UsuarioViewModel"/>
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/comment_light_background"
+        android:orientation="vertical">
+
+        <include
+            layout="@layout/usuario_item"
+            app:usuario="@{usuarioViewModel.usuario}"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/loading_comments_tv"
+                android:text="@string/loading_waypoints"
+                app:visibleGone="@{isLoading}"/>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/waypoints_list_wrapper">
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/waypoint_list"
+                    android:contentDescription="@string/cd_waypoints_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+                    app:visibleGone="@{!isLoading}"/>
+            </FrameLayout>
+        </FrameLayout>
+
+
+    </LinearLayout>
+</layout>

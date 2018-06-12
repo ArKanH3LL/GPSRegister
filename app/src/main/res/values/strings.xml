@@ -7,4 +7,10 @@
     <string name="hint_empresa">Empresa...</string>
     <string name="button_save">Guardar</string>
     <string name="empty_not_saved">No guardado porque esta vacio.</string>
+    <string name="no_waypoints">Sin Waypoints</string>
+    <string name="loading_waypoints">Cargando waypoints...</string>
+    <string name="loading_usuarios">Cargando usuarios...</string>
+    <string name="cd_usuarios_list">Lista de Usuarios</string>
+    <string name="cd_waypoints_list">Lista de Waypoints</string>
+    <string name="cd_usuario_name">Nombre de Usuarios</string>
 </resources>
